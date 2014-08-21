@@ -215,7 +215,6 @@ class BillScannerDriver implements Observable {
 			
 			if (!$this->isResponseValid($out)) {
 				error_log('Invalid response: ' . $this->binout($out));
-				echo "\n" .'Invalid response: ' . $this->binout($out) . "\n";
 				$this->notifyObservers('invalidResponse', ['bytes' => $out]);
 				continue;
 			}
