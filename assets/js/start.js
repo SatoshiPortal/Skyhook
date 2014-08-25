@@ -63,12 +63,17 @@ $(function () {
 		$('<a href="#" class="button closer">&times;</a>')
 			.on('touchstart mousedown', function (e) {
 				e.preventDefault();
-				e.stopPropagation();
+				e.stopImmediatePropagation();
 				root.hide();
 			})
 			.appendTo(root);
 		$.each(Languages, function (k, lang) {
 			$(template(lang))
+				.on('click', function (e) {
+					e.preventDefault();
+					e.stopImmediatePropagation();
+					return false;
+				})
 				.on('touchstart mousedown', selectLanguage(lang))
 				.appendTo(root);
 		});
