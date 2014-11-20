@@ -116,9 +116,9 @@ msgid ""
 msgstr ""
 "Diese Daten sind verschlüsselt.\n"
 "\t\t\t\t\t<br />\n"
-"\t\t\t\t\tEs wird ausschließlich für Blockchain Transaktionen auf sie\n"
+"\t\t\t\t\tEs wird ausschließlich für Blockchain Transaktionen auf diese\n"
 "\t\t\t\t\tzugegriffen, welche sicher sind. Wird die Stromversorgung\n"
-"\t\t\t\t\tdes Geräts getrennt, gehen alle Schlüssel zur verloren."
+"\t\t\t\t\tdes Gerätes getrennt, gehen alle Schlüssel verloren."
 
 #: pages/admin/config.phtml:117
 msgid "Exit"
@@ -154,7 +154,7 @@ msgid ""
 "nearing this\n"
 "\t\tlimit."
 msgstr ""
-"Limit pro Transaktion hier. Kunden wird es angezeigt, wenn sich eine "
+"Limit pro Transaktion hier. Den Kunden wird angezeigt, wenn sich eine "
 "Transaktion\n"
 "\t\tdiesem Wert annähert."
 
@@ -176,8 +176,8 @@ msgid ""
 msgstr ""
 "<strong>Aktuell wird ausschließlich gmail unterstützt.</strong></br>\n"
 "\t\t<i>Eine Email-Adresse wird benötigt, um Kunden Quittungen zu schicken, "
-"um Transaktions Logs zu\n"
-"\t\tempfangen and um Transaktionsfehler zu senden, welche manuell gelöst "
+"um Transaktionslogs zu\n"
+"\t\tempfangen und um Transaktionsfehler zu senden, welche manuell gelöst "
 "werden müssen.</i>\n"
 "\t\t"
 
@@ -187,7 +187,7 @@ msgstr "Email-Adresse"
 
 #: pages/admin/config/email.phtml:17
 msgid "Email Password"
-msgstr "Email Passwort"
+msgstr "Email-Passwort"
 
 #: pages/admin/config/email.phtml:19 pages/admin/config/email.phtml:22
 msgid "Machine Name"
@@ -196,7 +196,7 @@ msgstr "Maschinenname"
 #: pages/admin/config/email.phtml:20
 msgid "Name your machine (a unique Machine Name is recommended)"
 msgstr ""
-"Geben Sie ihrer Maschinen einen Namen (ein eindeutiger Name ist empfohlen)"
+"Geben Sie ihrer Maschine einen Namen (ein origineller Name ist empfehlenswert)"
 
 #: pages/admin/config/wallet.phtml:8
 msgid "Blockchain Configuration"
@@ -204,11 +204,11 @@ msgstr "Blockchain-Einstellungen"
 
 #: pages/admin/config/wallet.phtml:10
 msgid "Blockchain ID (GUID)"
-msgstr "Blockchain ID (GUID)"
+msgstr "Blockchain-ID (GUID)"
 
 #: pages/admin/config/wallet.phtml:11
 msgid "Blockchain Password"
-msgstr "Blockchain Passwort"
+msgstr "Blockchain-Passwort"
 
 #: pages/admin/config/wallet.phtml:12
 msgid "Secondary Password (optional)"
@@ -244,7 +244,7 @@ msgstr ""
 
 #: pages/admin/config/contact.phtml:19
 msgid "This is the rough equivalent of an 'out of order' sign."
-msgstr "Dies ist in etwa gleichbedeutend mit einem 'Außer Betrieb' - Schild."
+msgstr "Dies ist in etwa gleichbedeutend mit einem 'Außer Betrieb' Schild."
 
 #: pages/admin/config/contact.phtml:22
 msgid ""
@@ -299,7 +299,7 @@ msgstr ""
 "verwenden wollen.<br>\n"
 "\t\t\t<strong>Niedrigster</strong>/<strong>Höchster</strong> wenn Sie "
 "mehrere\n"
-"\t\t\tQuellen zum Kurs befragen und anhand des gewählten Kriterium "
+"\t\t\tQuellen zum Kurs befragen und anhand des gewählten Kriteriums "
 "auswerten\n"
 "\t\t\twollen.\n"
 "\t\t\t"
@@ -318,7 +318,7 @@ msgstr "Quellen:"
 
 #: pages/admin/config/pricing.phtml:165
 msgid "Choose Sources:"
-msgstr "Wählen Quellen:"
+msgstr "Wähle Quellen:"
 
 #: pages/admin/config/pricing.phtml:174
 msgid "Static Price:"
@@ -374,7 +374,7 @@ msgstr "bitcoin"
 
 #: pages/purchase.phtml:24
 msgid "insert bills"
-msgstr "Geldnoten eingeben"
+msgstr "Banknoten eingeben"
 
 #: pages/purchase.phtml:27
 msgid "bitcoins will be sent to:"
@@ -382,7 +382,7 @@ msgstr "Bitcoins werden gesendet an:"
 
 #: pages/purchase.phtml:32
 msgid "Do Not Insert Bills Larger than"
-msgstr "Legen Sie keine Geldnoten ein, welche größer sind als"
+msgstr "Legen Sie keine Banknoten ein, welche größer sind als"
 
 #: pages/purchase.phtml:35 pages/receipt.phtml:23
 #: pages/emails/receipt.phtml:34
@@ -403,7 +403,7 @@ msgstr "Transaktion abgeschlossen"
 
 #: pages/receipt.phtml:20
 msgid "Bitcoin Address:"
-msgstr "Bitcoin Adresse:"
+msgstr "Bitcoin-Adresse:"
 
 #: pages/receipt.phtml:22
 msgid "has been sent:"
@@ -525,7 +525,7 @@ msgid ""
 msgstr ""
 "Projekt Skyhook ist ein quelloffenens Gemeinschaftsprojekt und Du kannst "
 "helfen. \n"
-"Hast Du Kommenare oder Anregungen zur Verbesserung der Benutzererfahrung ?\n"
+"Hast Du Kommentare oder Anregungen zur Verbesserung der Benutzererfahrung?\n"
 "Besuche uns unter <a href=\"http://projectskyhook.com/feedback\">\n"
 "\t\thttp://projectskyhook.com/feedback\n"
 "\t</a> und kontaktiere uns!"
@@ -535,7 +535,7 @@ msgid ""
 "was updated with an email address. Use this address to notify the customer "
 "as the transaction error is resolved."
 msgstr ""
-"wurde mit Email-Adresse aktualisiert. Verwenden Sie diese Adresse, um Kunden "
+"wurde mit einer Email-Adresse aktualisiert. Verwenden Sie diese Adresse, um Kunden "
 "bei Lösungen von Transaktionsproblemen zu informieren."
 
 #: pages/emails/purchase-error-email-provided.phtml:8
@@ -544,7 +544,7 @@ msgid ""
 "the customer of status changes."
 msgstr ""
 "<strong>Hinweis:</strong> Diese Skyhook Maschine sendet keine automatischen "
-"Statusänderungen an Kunden."
+"Statusänderungen an seine Kunden."
 
 #: pages/emails/purchase-error-email-provided.phtml:11
 msgid "Customer's Email Address:"
@@ -557,7 +557,7 @@ msgstr ""
 
 #: pages/error.phtml:19
 msgid "A trans&shy;act&shy;ion error has occured"
-msgstr "Ein Trans&shy;akt&shy;ions Fehler ist aufgetreten"
+msgstr "Ein Trans&shy;akt&shy;ionsfehler ist aufgetreten"
 
 #: pages/error.phtml:26
 msgid "notify me"
@@ -580,8 +580,8 @@ msgid ""
 "Please enter your email address so that the operator may notify you when "
 "this issue is resolved."
 msgstr ""
-"Bitte geben Sie ihre Email-Adresse an, damit der Betrieber Sie nach Lösung "
-"des Problems informieren kann. "
+"Bitte geben Sie ihre Email-Adresse an, damit der Betreiber Sie nach der"
+"Lösung des Problems informieren kann."
 
 #: pages/head.phtml:37
 msgid "Network Unreachable"
@@ -621,7 +621,7 @@ msgstr "Unbekannte Kurs-Quelle:"
 
 #: includes/ConfigValidator.php:52
 msgid "When using static price a value is required."
-msgstr "Wenn Festpreis verwendet wird, muss ein Wert angegeben werde."
+msgstr "Wenn ein Festpreis verwendet wird, muss ein Wert angegeben werden."
 
 #: includes/ConfigValidator.php:57
 msgid "Static price value must be numeric."
@@ -629,7 +629,7 @@ msgstr "Festpreis muss numerisch sein."
 
 #: includes/ConfigValidator.php:69
 msgid "Unrecognized pricing modifier:"
-msgstr "Unbekannter Preis Modifikator:"
+msgstr "Unbekannter Preis-Modifikator:"
 
 #: includes/ConfigValidator.php:75
 msgid "Value must be numeric for:"
@@ -637,7 +637,7 @@ msgstr "Wert muss numerisch sein für:"
 
 #: includes/ConfigValidator.php:88
 msgid "A valid Blockchain.info wallet id is required."
-msgstr "Es wird eine gültige Blockchain.info Wallet ID benötigt."
+msgstr "Es wird eine gültige Blockchain.info Wallet-ID benötigt."
 
 #: includes/ConfigValidator.php:95
 msgid "Your respective Blockchain.info password is required."
@@ -648,12 +648,12 @@ msgid ""
 "An address controlled by your Blockchain.info wallet is required to send "
 "from."
 msgstr ""
-"Es wird eine Absendeadresse benötigt, welche aus Ihrer Blockchain.info "
+"Es wird eine Absenderadresse benötigt, welche aus Ihrer Blockchain.info "
 "Wallet stammt."
 
 #: includes/ConfigValidator.php:107
 msgid "A valid Bitcoin address is required."
-msgstr "Es wird eine gültige Bitcoin Adresse benötigt."
+msgstr "Es wird eine gültige Bitcoin-Adresse benötigt."
 
 #: includes/ConfigValidator.php:117
 msgid "A valid email address is required."
@@ -665,7 +665,7 @@ msgstr "Die eingegebene Email-Adresse ist ungültig."
 
 #: includes/ConfigValidator.php:129
 msgid "Email password is required."
-msgstr "Email Passwort wird benötigt."
+msgstr "Email-Passwort wird benötigt."
 
 #: includes/ConfigValidator.php:138
 msgid "Minimum password length is 5 characters."
@@ -688,4 +688,4 @@ msgid "Unknown format encountered when attempmting to retreive balance:"
 msgstr "Unbekanntes Format beim Versuch, den Kontostand abzufragen:"
 
 msgid "Device Commands"
-msgstr "Maschinen Befehle"
+msgstr "Maschinen-Befehle"
