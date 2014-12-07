@@ -18,6 +18,8 @@ if (!isset($submitTo)) {
 		</h1>
 	</div>
 	<div data-role="content">
+                <button type="submit" data-theme="b" onclick="window.location.href='/start'">Return to Main Screen</button>
+                <br/>
 		<form action="<?= $html->escape($submitTo) ?>" method="POST" autocomplete="off" data-transition="flip" data-ajax="false" >
 			<input type="hidden" name="alt" value="true" />
 			<div class="ui-body ui-body-b">
