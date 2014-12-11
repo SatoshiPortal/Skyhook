@@ -1,0 +1,6 @@
+This is a derivation of the Coinbase API
+with functions added for account specific send and balance
+as well as being packaged into a 'Coinbase' namespace.
+
+See: https://github.com/coinbase/coinbase-php
+
