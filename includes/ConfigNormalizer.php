@@ -99,12 +99,33 @@ class ConfigNormalizer {
 		
 		$normalized['transaction-cron'] = ($post['transaction-cron'] === "on");
 		
-		$blockchain = &$normalized['walletProvider'];
-		$blockchain['id'] = @$post['wallet']['id'];
-		$blockchain['mainPass'] = @$post['wallet']['mainPass'];
-		$blockchain['secondPass'] = @$post['wallet']['secondPass'];
-		$blockchain['fromAddress'] = @$post['wallet']['fromAddress'];
-		
+		$walletProvider = &$normalized['walletProvider'];
+
+		$providerId = $post['walletProviderId'];
+		$walletProvider['providerId'] = $providerId;
+		if ( $providerId == 1 ) {
+		    $walletProvider['provider'] = 'WalletProviders\Blockchain';
+		} else if ( $providerId == 2 ) {
+		    $walletProvider['provider'] = 'WalletProviders\CoinbaseWallet';
+		} else if ( $providerId == 3 ) {
+		    $walletProvider['provider'] = 'WalletProviders\Dummy';
+		}
+
+		# BlockChain Fields
+		$walletProvider['id'] = @$post['wallet']['id'];
+		$walletProvider['mainPass'] = @$post['wallet']['mainPass'];
+		$walletProvider['secondPass'] = @$post['wallet']['secondPass'];
+		$walletProvider['fromAddress'] = @$post['wallet']['fromAddress'];
+
+		# Coinbase Fields
+		$walletProvider['coinbaseAccountId'] = @$post['wallet']['coinbaseAccountId'];
+		$walletProvider['coinbaseApiKey'] = @$post['wallet']['coinbaseApiKey'];
+		$walletProvider['coinbaseApiSecret'] = @$post['wallet']['coinbaseApiSecret'];
+
+		# TODO Future enhancement (auto-repurchase BTC)
+		$walletProvider['coinbaseMaintainBalance'] = @$post['wallet']['coinbaseMaintainBalance'];
+		$walletProvider['coinbasePaymentMethodId'] = @$post['wallet']['coinbasePaymentMethodId'];
+
 		$normalized['pricingProvider'] = self::normalizePricingSettings($post);
 		return $normalized;
 	}
@@ -117,10 +138,16 @@ class ConfigNormalizer {
 			'modifierEnabled' => [],
 			'modifier' => [],
 			'wallet' => [
+				'providerId' => '',
 				'id' => '',
 				'mainPass' => '',
 				'secondPass' => '',
 				'fromAddress' => '',
+				'coinbaseAccountId' => '',
+				'coinbaseApiKey' => '',
+				'coinbaseApiSecret' => '',
+				'coinbaseMaintainBalance' => '',
+				'coinbasePaymentMethodId' => '',
 			],
 			'email' => [
 				'username' => '',
@@ -145,7 +172,7 @@ class ConfigNormalizer {
 		
 		$denormalized['wallet'] = $cfgData['walletProvider'];
 		unset($denormalized['wallet']['provider']);
-		
+
 		$denormalized['email'] = $cfgData['email'];
 		if (empty($denormalized['email']['machine'])) {
 			$denormalized['email']['machine'] = 'Project Skyhook 00';

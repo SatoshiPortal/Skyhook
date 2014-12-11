@@ -55,7 +55,8 @@ class CoinbaseWallet implements \WalletProvider {
 			$balance = $this->coinbase->getBalanceByAccountId($this->accountId);
 			$balance *= 100000000;
 		} catch(\Exception $e) {
-			throw new \Exception('Error getting balance: ' . $e->getMessage());
+			# Swallow for now and treat as 0 balance
+			# throw new \Exception('Error getting balance: ' . $e->getMessage());
 		}
 		return Amount::fromSatoshis($balance);
 	}

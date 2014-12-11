@@ -38,6 +38,7 @@ $currencyMeta = $config->getCurrencyMeta();
 		</td>
 	</tr>
 	<tr>
+<?php if ( $ticket->getTXID() != '' ) { ?>
 		<th style="font-weight:bold" align="right">
 			<?= $i18n->_('Transaction Link:')?>
 		</th>
@@ -46,6 +47,16 @@ $currencyMeta = $config->getCurrencyMeta();
 				https://blockchain.info/tx/<?= $html->escape($ticket->getTXID()) ?>
 			</a>
 		</td>
+<?php } else { ?>
+		<th style="font-weight:bold" align="right">
+			<?= $i18n->_('Transaction Details:')?>
+		</th>
+		<td>
+			<a href="https://blockchain.info/address/<?= $html->escape($ticket->getCustomerAddress()->get()) ?>">
+				https://blockchain.info/address/<?= $html->escape($ticket->getCustomerAddress()->get()) ?>
+			</a>
+		</td>
+<?php } ?>
 	</tr>
 </table>
 <p>

@@ -57,14 +57,24 @@ class ConfigVerifier {
 		$i18n = Localization::getTranslator();
 		$walletSettings = [];
 		$emailSettings = [];
-		
+
+		$providerClass = '';
 		try {
-			$cfg->getWalletProvider()->verifyOwnership();
+			$provider = $cfg->getWalletProvider();
+			$providerClass = get_class($provider);
+			$provider->verifyOwnership();
 		} catch (Exception $e) {
-			$walletSettings[] = [
+			if ( strpos($providerClass,'CoinbaseWallet') !== false ) {
+			  $walletSettings[] = [
+				'id' => '#wallet-coinbaseApiKey-error',
+				'error' => $e->getMessage(),
+			  ];
+			} else {
+			  $walletSettings[] = [
 				'id' => '#wallet-id-error',
 				'error' => $e->getMessage(),
-			];
+			  ];
+			}
 		}
 		
 		try {
