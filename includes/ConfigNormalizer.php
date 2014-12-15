@@ -123,8 +123,17 @@ class ConfigNormalizer {
 		$walletProvider['coinbaseApiSecret'] = @$post['wallet']['coinbaseApiSecret'];
 
 		# TODO Future enhancement (auto-repurchase BTC)
-		$walletProvider['coinbaseMaintainBalance'] = @$post['wallet']['coinbaseMaintainBalance'];
-		$walletProvider['coinbasePaymentMethodId'] = @$post['wallet']['coinbasePaymentMethodId'];
+		$walletProvider['coinbaseRepurchaseEnabled'] = ($post['coinbaseRepurchaseEnabled'] === "1");
+
+		#$walletProvider['coinbasePaymentMethodId'] = $post['coinbasePaymentMethodId'];
+
+		if ($post->offsetExists('coinbasePaymentMethodId')) {
+			$walletProvider['coinbasePaymentMethodId'] = $post['coinbasePaymentMethodId'];
+		} else {
+			$walletProvider['coinbasePaymentMethodId'] = '0';
+		}
+
+		#$walletProvider['coinbasePaymentChoices'] = $post['coinbasePaymentChoices'];
 
 		$normalized['pricingProvider'] = self::normalizePricingSettings($post);
 		return $normalized;
@@ -134,6 +143,8 @@ class ConfigNormalizer {
 		$denormalized = [
 			'selector' => '',
 			'sources' => [],
+
+
 			'staticPrice' => '',
 			'modifierEnabled' => [],
 			'modifier' => [],
@@ -146,8 +157,9 @@ class ConfigNormalizer {
 				'coinbaseAccountId' => '',
 				'coinbaseApiKey' => '',
 				'coinbaseApiSecret' => '',
-				'coinbaseMaintainBalance' => '',
+				'coinbaseRepurchaseEnabled' => '',
 				'coinbasePaymentMethodId' => '',
+				'coinbasePaymentChoices' => '',
 			],
 			'email' => [
 				'username' => '',
@@ -172,6 +184,14 @@ class ConfigNormalizer {
 		
 		$denormalized['wallet'] = $cfgData['walletProvider'];
 		unset($denormalized['wallet']['provider']);
+		if (empty($denormalized['wallet']['providerId'])) {
+			$denormalized['wallet']['providerId'] = '0';
+			$denormalized['wallet']['coinbaseAccountId'] = '';
+			$denormalized['wallet']['coinbaseApiKey'] = '';
+			$denormalized['wallet']['coinbaseApiSecret'] = '';
+			$denormalized['wallet']['coinbaseRepurchaseEnabled'] = false;
+			$denormalized['wallet']['coinbasePaymentMethodId'] = '0';
+		}
 
 		$denormalized['email'] = $cfgData['email'];
 		if (empty($denormalized['email']['machine'])) {

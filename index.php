@@ -99,6 +99,7 @@ $result = $router->resolve(
 		}],
 		['/settings.js', Router::lazyLoad('Controllers\SettingsData')],
 		['/test-price$', Router::lazyLoad('Controllers\Ajax\TestPrice')],
+		['/coinbase-data$', Router::lazyLoad('Controllers\Ajax\CoinbaseData')],
 		['/admin', Router::lazyLoad('Controllers\Admin')],
 		
 		//Checks the config before any other routes are resolved.

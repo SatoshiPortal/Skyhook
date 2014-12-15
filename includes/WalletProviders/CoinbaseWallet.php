@@ -16,6 +16,8 @@ class CoinbaseWallet implements \WalletProvider {
         private $accountId;
         private $apiKey;
         private $apiSecret;
+	private $repurchase;
+	private $paymentMethodId;
 	private $coinbase;
 
         private function baseURL() {
@@ -26,6 +28,8 @@ class CoinbaseWallet implements \WalletProvider {
                 $this->accountId = $options['coinbaseAccountId'];
                 $this->apiKey = $options['coinbaseApiKey'];
                 $this->apiSecret = $options['coinbaseApiSecret'];
+		$this->repurchase = $options['coinbaseRepurchaseEnabled'];
+		$this->paymentMethodId = $options['coinbasePaymentMethodId'];
                 try {
 			$this->coinbase = Coinbase::withApiKey($this->apiKey, $this->apiSecret);
                 } catch(\Exception $e) {
@@ -55,8 +59,7 @@ class CoinbaseWallet implements \WalletProvider {
 			$balance = $this->coinbase->getBalanceByAccountId($this->accountId);
 			$balance *= 100000000;
 		} catch(\Exception $e) {
-			# Swallow for now and treat as 0 balance
-			# throw new \Exception('Error getting balance: ' . $e->getMessage());
+			throw new \Exception('Error getting balance: ' . $e->getMessage());
 		}
 		return Amount::fromSatoshis($balance);
 	}
@@ -94,7 +97,7 @@ class CoinbaseWallet implements \WalletProvider {
 			$address,
 			$howMuch->get(),
 			'ATM Transaction',
-			$userfee,
+			null,
 			null);
 
 		if ( !$result->success ) {
@@ -106,6 +109,12 @@ class CoinbaseWallet implements \WalletProvider {
 		    'message' => 'Sent ' . $howMuch->get() . ' BTC to ' . $address,
 		    'notice' => 'Coinbase Transaction: ' . $result->transaction->id
 		);
+
+
+		if ( $this->repurchase ) {
+			$this->tryRepurchaseBtc( $howMuch->get() );
+		}
+
 		return new BlockchainTransaction($txn);
 	}
 
@@ -122,12 +131,32 @@ class CoinbaseWallet implements \WalletProvider {
 			if ( $transaction->hsh != null ) {
 				return $transaction->hsh;
 			}
-		    } catch ( Exception $e ) {
+		    } catch ( \Exception $e ) {
 			# Swallow exceptions here because the txn should eventually go
 			# through on coinbase' side even if we don't have a hash for it yet.
 		    }
 		}
 		return '';
+	}
+
+	private function tryRepurchaseBtc( $btcAmount ) {
+
+		try {
+		    if ( $this->paymentMethodId == '0' ) {
+			# Buy with "default" payment method
+			$this->coinbase->buyForAccountIdWithPaymentMethod($btcAmount,
+				$this->accountId, null, true);
+		    } else {
+			# Buy with specified payment method
+			$this->coinbase->buyForAccountIdWithPaymentMethod($btcAmount,
+				$this->accountId, $this->paymentMethodId, true);
+		    }
+		} catch ( \Exception $e ) {
+			# Swallow any failures to buy silently for now.
+
+			# For example, coinbase will reject any repurchases
+			# that are less than < $1.00 USD worth (oh well!)
+		}
 	}
 }
 

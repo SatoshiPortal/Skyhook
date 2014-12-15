@@ -235,7 +235,77 @@ $(document).one('pageshow', function () {
 	}
 	
 	$('#test-price').on('click touchstart', testPrice);
-	
+
+      
+	function coinbaseNetworkError () {
+                $('#coinbase-errors').html('<font color="#FF0000">Network error, please try again.</font>');
+	}
+
+        function getCoinbaseConfig() {
+                return configForm.serialize();
+        }
+
+        function coinbaseData(e) {
+                clearErrorMessages();
+                if (e != null && e.preventDefault) {
+                        e.preventDefault();
+                }
+		if ($('#coinbaseRepurchaseEnabled').val() == '0') {
+			// Disable selector
+			var $ps = $('#coinbasePaymentMethodId');
+			$ps.selectmenu('disable');
+			$ps.selectmenu('refresh');
+                        $('#coinbase-errors').html('');
+			return;
+		}
+                $.ajax(
+                        '/coinbase-data',
+                        {
+                                cache: false,
+                                type: 'POST',
+                                dataType: 'json',
+                                data: getCoinbaseConfig(),
+                                error: coinbaseNetworkError
+                        }
+                ).done(function (data) {
+                        $('#coinbase-errors').html(
+			'<font color="#FF0000">' + data.errors + '</font>');
+			renderPaymentMethodSelector(data);
+                }).fail(coinbaseNetworkError);
+        }
+
+	function renderPaymentMethodSelector(data) {
+		var $ps = $('#coinbasePaymentMethodId');
+		$ps.empty();
+	        $ps.append('<option value="0">Default (as specified on Coinbase)</option>');
+
+		// Read method from a hidden span
+		var method = $('#coinbasePaymentMethodSelected').text();
+
+		for ( var i = 0; i < data.methods.payment_methods.length; i++ ) {
+			var pm = data.methods.payment_methods[i].payment_method;
+			var selected = '';
+			if ( method == pm.id) {
+				selected = 'selected="selected"';
+			}
+			if ( pm.can_buy ) {
+			    var option = '<option ' + selected + ' value="' + pm.id + '">' + pm.name + '</option>';
+			    $ps.append(option);
+			}
+		}
+
+		$ps.selectmenu('enable');
+		$ps.selectmenu('refresh');
+	}
+
+        //$('#coinbaseRepurchaseEnabled').on('click touchstart', coinbaseData);
+        $('#coinbaseRepurchaseEnabled').change(coinbaseData);
+
+	if ($('#coinbaseRepurchaseEnabled').val() == '1') {
+		coinbaseData();
+	}
+
+        // Save Configuration
 	function save(e) {
 		e.preventDefault();
 		clearErrorMessages();

@@ -97,6 +97,11 @@ class Coinbase
         return $returnValue;
     }
 
+    public function getAccounts()
+    {
+        return $this->get("accounts", array());
+    }
+
     public function getAuthorization()
     {
         return $this->get("authorization", array());
@@ -263,6 +268,23 @@ class Coinbase
             "qty" => $amount,
             "agree_btc_amount_varies " => $agreeBtcAmountVaries,
         ));
+    }
+
+    public function buyForAccountIdWithPaymentMethod($amount, $accountId, $paymentMethodId, $agreeBtcAmountVaries=false)
+    {
+
+	$params = array(
+	    'account_id' => $accountId,
+            "qty" => $amount,
+            "agree_btc_amount_varies " => $agreeBtcAmountVaries
+	);
+
+	# Only add this if it's set
+	if ( $paymentMethodId != null ) {
+		$params['payment_method_id'] = $paymentMethodId;
+	}
+
+        return $this->post("buys", $params);
     }
 
     public function sell($amount)
