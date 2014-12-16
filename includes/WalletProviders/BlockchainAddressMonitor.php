@@ -66,7 +66,7 @@ class BlockchainAddressMonitor {
 		$addr = $this->addr->get();
 		
 		$response = JSON::decode(HTTP::get(
-			'http://blockchain.info/unspent?active=' . urlencode($addr)
+			'https://blockchain.info/unspent?active=' . urlencode($addr)
 		));
 		
 		$dedup = [];
@@ -82,7 +82,7 @@ class BlockchainAddressMonitor {
 	private function fetchTX($hash) {
 		Debug::log('fetching: ' . $hash);
 		$response = JSON::decode(HTTP::get(
-			'http://blockchain.info/rawtx/' . urlencode($hash)
+			'https://blockchain.info/rawtx/' . urlencode($hash)
 		));
 		sleep(1);
 		return $response;
