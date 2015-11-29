@@ -41,10 +41,8 @@ class StartPurchase implements Controller {
 		$price = $ticket->getBitcoinPrice();
 		return [
 			'ticketId' => $ticket->getId(),
-			'price' => [
-				'value' => $price->get(),
-				'formatted' => $cfg->getCurrencyMeta()->format($price, true),
-			],
+			'address' => $addr->get(),
+			'price' => $cfg->getCurrencyMeta()->format($price, true)
 		];
 	}
 	

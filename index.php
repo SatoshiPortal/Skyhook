@@ -106,14 +106,11 @@ $result = $router->resolve(
 		['', Container::dispense('Controllers\ConfigChecker')],
 		['/check-balance', Router::lazyLoad('Controllers\CheckBalance')],
 		
+		['/bill-acceptor/disable$', Router::lazyLoad('Controllers\ScannerStopper')],
 		['/finalize/:ticket$', Router::lazyLoad('Controllers\Ajax\FinalizePurchase')],
-		['/ajax', Router::lazyLoad('Controllers\Ajax')],
 		['/validate/:address$', Router::lazyLoad('Controllers\Ajax\ValidateBitcoinAddress')],
 		['/add-email-to-ticket/:ticket', Router::lazyLoad('Controllers\Ajax\AddEmailToTicket')],
 		['/nettest', Router::lazyLoad('Controllers\NetworkTester')],
-		['/receipt/:ticket$', Router::lazyLoad('Controllers\Receipt')],
-		['/error/:ticket$', Router::lazyLoad('Controllers\Error')],
-		['/purchase/:address/:ticket$', Router::lazyLoad('Controllers\FinishPurchase')],
 		['/price$', Router::lazyLoad('Controllers\Price')],
 		['/billscan-balance/:ticket$', Router::lazyLoad('Controllers\BillScannerBalance')],
 		['/email-receipt', Router::lazyLoad('Controllers\EmailReceipt')],
@@ -122,11 +119,8 @@ $result = $router->resolve(
 		//Checks the known connectivity before any other routes are resolved.
 		['', Container::dispense('Controllers\ConnectivityChecker')],
 		
-		['/start$', Router::lazyLoad('Controllers\Start')],
-		['/account$', Router::lazyLoad('Controllers\Account')],
-		['/purchase/:address$', Router::lazyLoad('Controllers\StartPurchase')],
 		['/bust$', Router::lazyLoad('Controllers\CacheBust')],
-		['/?$', Router::lazyLoad('Controllers\Start')],
+		['/(start)?$', Router::lazyLoad('Controllers\App')],
 		['', function () {
 			header('HTTP/1.1 404 Not Found.');
 			echo '404 Not Found.';
@@ -134,7 +128,6 @@ $result = $router->resolve(
 		}]
 	]
 );
-
 
 
 

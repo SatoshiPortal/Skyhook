@@ -33,7 +33,7 @@
 	</tr>
 	<tr>
 		<th align="right">
-			<?= $i18n->_('Currency Inserted')?> (<?= 
+			<?= $i18n->_('Currency Inserted')?> (<?=
 				$html->escape(
 					$ticket->getCurrency()
 				)
@@ -45,7 +45,7 @@
 	</tr>
 	<tr>
 		<th align="right">
-			<?= $i18n->_('Bitcoin Price:')?> <?= 
+			<?= $i18n->_('Bitcoin Price:')?> <?=
 				$html->escape(
 					$ticket->getCurrency()
 				)
@@ -84,9 +84,9 @@
 			<?= $i18n->_('Ticket Finalized (in UTC):')?>
 		</th>
 		<td>
-			<? if ($ticket->getInitiatedAt() != null): ?>
+			<?php if ($ticket->getInitiatedAt() != null): ?>
 				<?= $html->escape($ticket->getFinalizedAt()->format('g:ia \o\n l jS F Y e')) ?>
-			<? endif; ?>
+			<?php endif; ?>
 		</td>
 	</tr>
 	<tr>

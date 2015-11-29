@@ -1,0 +1,58 @@
+<?php
+$title = 'Project Skyhook';
+//$styles = ['/assets/css/skyhook.css'];
+$styles = ['/assets/css/index.css'];
+$classes = ['app'];
+include 'head.phtml';
+include 'start.phtml';
+include 'account.phtml';
+include 'purchase.phtml';
+include 'receipt.phtml';
+include 'help.phtml';
+include 'lang.phtml';
+include 'error.phtml';
+include 'network-out.phtml';
+?>
+
+<!-- modular blocks re-used on multiple pages -->
+<div class="hidden">
+	<div id="bitcoin-price-box">
+		<div id="bitcoin-price-box-in">
+			<div id="bitcoin-price-value">Currently ... per Bitcoin</div>
+		</div>
+	</div>
+</div>
+
+<?php
+$scripts = [
+	'/settings.js',
+	'/assets/jQuery/jquery.min.js',
+	'/assets/gettext/Gettext.js',
+	'/assets/js/language.js',
+	'/assets/js/Comet.js',
+	'/assets/jsqrcode/src/grid.js',
+	'/assets/jsqrcode/src/version.js',
+	'/assets/jsqrcode/src/detector.js',
+	'/assets/jsqrcode/src/formatinf.js',
+	'/assets/jsqrcode/src/errorlevel.js',
+	'/assets/jsqrcode/src/bitmat.js',
+	'/assets/jsqrcode/src/datablock.js',
+	'/assets/jsqrcode/src/bmparser.js',
+	'/assets/jsqrcode/src/datamask.js',
+	'/assets/jsqrcode/src/rsdecoder.js',
+	'/assets/jsqrcode/src/gf256poly.js',
+	'/assets/jsqrcode/src/gf256.js',
+	'/assets/jsqrcode/src/decoder.js',
+	'/assets/jsqrcode/src/qrcode.js',
+	'/assets/jsqrcode/src/findpat.js',
+	'/assets/jsqrcode/src/alignpat.js',
+	'/assets/jsqrcode/src/databr.js',
+	'/assets/thirdparty/fastclick.js',
+	'/assets/thirdparty/bitcoinjs.js',
+	'/assets/thirdparty/jquery.watermarkinput.js',
+	'/assets/js/loading.js',
+	'/assets/js/help.js',
+	'/assets/js/currency.js',
+	'/assets/js/index.js',
+];
+include 'foot.phtml';
