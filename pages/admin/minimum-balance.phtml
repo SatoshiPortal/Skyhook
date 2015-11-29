@@ -53,13 +53,25 @@ if (!isset($submitTo)) {
 						autocapitalize="off"
 					/>
 				</div>
-				<div>
-					<input
-						type="submit"
-						value="<?= $i18n->_('Login') ?>"
-						data-theme="b"
-					/>
-				</div>
+                                <div class="ui-grid-a">
+                                        <div class="ui-block-a">
+                                                <a href="/"
+                                                        data-role="button"
+                                                        data-theme="c"
+                                                        rel="external"
+                                                        data-transition="fade"
+                                                >
+                                                        <?= $i18n->_('Cancel') ?>
+                                                </a>
+                                        </div>
+                                        <div class="ui-block-b">
+                                                <input
+                                                        type="submit"
+                                                        value="<?= $i18n->_('Login') ?>"
+                                                        data-theme="b"
+                                                />
+                                        </div>
+                                </div>
 			</div>
 		</form>
 	</div>

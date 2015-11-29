@@ -1,9 +1,40 @@
 <?
 $wallet = $config['wallet'];
 $walletInput = $simpleInput($wallet, 'wallet');
+$pid = $wallet['providerId'];
+$payId = $wallet['coinbasePaymentMethodId'];
+
+function providerSelected( $id, $providerId) {
+  if ( $id == $providerId ) {
+      return "selected = \"selected\"";
+  }
+  return "";
+}
+
 ?>
-<!-- Blockchain -->
 <div id="wallet-settings" data-role="collapsible" data-collapsed="true">
+	<h3>
+		<?= $i18n->_('Wallet Configuration') ?>
+	</h3>
+        <div data-role="fieldcontain">
+                <label for="WalletProvider">
+                        <?= $i18n->_('Selected Wallet Provider')?>
+                </label>
+		<br/>
+                <select
+                        name="walletProviderId"
+                        id="walletProviderId"
+                        data-theme="a"
+                        data-native-menu="false"
+                >
+		    <option value="1" <?= providerSelected(1, $pid)?>>Blockchain Wallet</option>
+		    <option value="2" <?= providerSelected(2, $pid)?>>Coinbase Wallet</option>
+		    <option value="3" <?= providerSelected(3, $pid)?>>Dummy Wallet</option>
+                </select>
+        </div>
+
+  <!-- Blockchain -->
+  <div id="blockchain-wallet-settings" data-role="collapsible" data-collapsed="true">
 	<h3>
 		<?= $i18n->_('Blockchain Configuration') ?>
 	</h3>
@@ -11,4 +42,59 @@ $walletInput = $simpleInput($wallet, 'wallet');
 	<? $walletInput($i18n->_('Blockchain Password'), 'mainPass', 'password') ?>
 	<? $walletInput($i18n->_('Secondary Password (optional)'), 'secondPass', 'password') ?>
 	<? $walletInput($i18n->_('Sending Bitcoin Address'), 'fromAddress') ?>
-</div><!-- /Blockchain -->
+  </div><!-- /Blockchain -->
+
+  <!-- Coinbase -->
+  <div id="coinbase-wallet-settings" data-role="collapsible" data-collapsed="true">
+	<h3>
+		<?= $i18n->_('Coinbase Configuration') ?>
+	</h3>
+
+                <?= $i18n->_('API key provided <strong>must</strong> have the following permissions on the selected Account in order
+		to work with this machine:<br/><br/><strong>balance, transactions, send, buy</strong> &nbsp;')?>
+	<br/><br/>
+	<? $walletInput($i18n->_('Coinbase Api Key'), 'coinbaseApiKey') ?>
+	<? $walletInput($i18n->_('Coinbase Api Secret'), 'coinbaseApiSecret', 'password') ?>
+	<? $walletInput($i18n->_('Coinbase Account ID to Vend From'), 'coinbaseAccountId') ?>
+
+        <div class="ui-grid-a">
+                <div class="ui-block-a" style="width:70%">
+                        <label for="hourly">
+                                <?= $i18n->_('Repurchase BTC After Every Sale') ?>
+	                	&nbsp; &nbsp; <span id="coinbase-errors"></span>
+                        </label>
+                </div>
+                <div class="ui-block-b" style="width:30%">
+                        <select
+                                name="coinbaseRepurchaseEnabled"
+                                id="coinbaseRepurchaseEnabled"
+                                data-role="slider"
+                                data-track-theme="c"
+                                data-theme="a"
+                                data-mini="true" >
+                                <option value="0"><?= $i18n->_('Off') ?></option>
+                                <option value="1"
+                                        <?= !empty($wallet['coinbaseRepurchaseEnabled']) ? 'selected="selected"' : '' ?>
+                                ><?= $i18n->_('On')?></option>
+                        </select>
+                </div>
+        </div>
+
+        <div data-role="fieldcontain">
+                <label for="WalletProvider">
+                        <?= $i18n->_('Selected Payment Method')?>
+                </label>
+		<br/>
+                <select
+                        name="coinbasePaymentMethodId"
+                        id="coinbasePaymentMethodId"
+                        data-theme="a"
+                        data-native-menu="false"
+			disabled="disabled"
+                >
+		    <option value="0">Default (as specified on Coinbase)</option>
+                </select>
+		<span id="coinbasePaymentMethodSelected" style="display: none;"><?= $wallet['coinbasePaymentMethodId'] ?></span>
+        </div>
+  </div><!-- /Coinbase -->
+</div>

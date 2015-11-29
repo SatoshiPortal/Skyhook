@@ -111,5 +111,4 @@ class Blockchain implements \WalletProvider {
 	}
 }
 
-
-
+?>
