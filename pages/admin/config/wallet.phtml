@@ -1,4 +1,4 @@
-<?
+<?php
 $wallet = $config['wallet'];
 $walletInput = $simpleInput($wallet, 'wallet');
 $pid = $wallet['providerId'];
@@ -38,10 +38,14 @@ function providerSelected( $id, $providerId) {
 	<h3>
 		<?= $i18n->_('Blockchain Configuration') ?>
 	</h3>
-	<? $walletInput($i18n->_('Blockchain ID (GUID)'), 'id') ?>
-	<? $walletInput($i18n->_('Blockchain Password'), 'mainPass', 'password') ?>
-	<? $walletInput($i18n->_('Secondary Password (optional)'), 'secondPass', 'password') ?>
-	<? $walletInput($i18n->_('Sending Bitcoin Address'), 'fromAddress') ?>
+	<?php
+$walletInput($i18n->_('Blockchain ID (GUID)'), 'id') ?>
+	<?php
+$walletInput($i18n->_('Blockchain Password'), 'mainPass', 'password') ?>
+	<?php
+$walletInput($i18n->_('Secondary Password (optional)'), 'secondPass', 'password') ?>
+	<?php
+$walletInput($i18n->_('Sending Bitcoin Address'), 'fromAddress') ?>
   </div><!-- /Blockchain -->
 
   <!-- Coinbase -->
@@ -53,9 +57,12 @@ function providerSelected( $id, $providerId) {
                 <?= $i18n->_('API key provided <strong>must</strong> have the following permissions on the selected Account in order
 		to work with this machine:<br/><br/><strong>balance, transactions, send, buy</strong> &nbsp;')?>
 	<br/><br/>
-	<? $walletInput($i18n->_('Coinbase Api Key'), 'coinbaseApiKey') ?>
-	<? $walletInput($i18n->_('Coinbase Api Secret'), 'coinbaseApiSecret', 'password') ?>
-	<? $walletInput($i18n->_('Coinbase Account ID to Vend From'), 'coinbaseAccountId') ?>
+	<?php
+$walletInput($i18n->_('Coinbase Api Key'), 'coinbaseApiKey') ?>
+	<?php
+$walletInput($i18n->_('Coinbase Api Secret'), 'coinbaseApiSecret', 'password') ?>
+	<?php
+$walletInput($i18n->_('Coinbase Account ID to Vend From'), 'coinbaseAccountId') ?>
 
         <div class="ui-grid-a">
                 <div class="ui-block-a" style="width:70%">

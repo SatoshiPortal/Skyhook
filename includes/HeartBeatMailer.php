@@ -1,10 +1,10 @@
-<?
+<?php
 
 class HeartBeatMailer {
 	public function send() {
 		$i18n = Localization::getTranslator();
 		$config = Admin::volatileLoad()->getConfig();
-		
+
 		$transport = Swift_SmtpTransport::newInstance('smtp.gmail.com', 465, 'ssl')
 			->setUsername($config->getEmailUsername())
 			->setPassword($config->getEmailPassword());

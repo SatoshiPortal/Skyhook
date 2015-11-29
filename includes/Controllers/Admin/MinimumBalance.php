@@ -1,4 +1,4 @@
-<?
+<?php
 
 namespace Controllers\Admin;
 use Controllers\Controller;

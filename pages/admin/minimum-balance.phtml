@@ -1,4 +1,4 @@
-<?
+<?php
 $title = 'Admin Login';
 $styles = ['/assets/jQuery/jquery.mobile.min.css'];
 include __DIR__ . '/../head.phtml';
@@ -32,11 +32,13 @@ if (!isset($submitTo)) {
 				<p>
 					<?= nl2br($html->escape($contactInfo)) ?>
 				</p>
-				<? if (!empty($errorMessage)): ?>
+				<?php
+if (!empty($errorMessage)): ?>
 					<div class="ui-body-e">
 						<strong><?= $i18n->_('Error:') ?></strong> <?= $errorMessage ?>
 					</div>
-				<? endif; ?>
+				<?php
+endif; ?>
 				<div data-role="fieldcontain">
 					<label for="password">
 						<?= $i18n->_('Password:') ?>
@@ -81,7 +83,7 @@ if (!isset($submitTo)) {
 		</h3>
 	</div>
 </div>
-<?
+<?php
 $scripts = [
 	'/assets/gettext/Gettext.js',
 	'/assets/jQuery/jquery.min.js',

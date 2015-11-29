@@ -1,23 +1,23 @@
-<?
+<?php
 
 class CSVMailer {
 	public function send($lastOverride = false) {
 		$i18n = Localization::getTranslator();
 		$lastFn = '/home/pi/phplog/last-tx-sent';
-		
+
 		$last = 0;
-		
+
 		if (file_exists($lastFn)) {
 			$last = intval(trim(file_get_contents($lastFn)));
 		}
-		
+
 		if ($lastOverride !== false) {
 			$last = $lastOverride;
 		}
-		
+
 		$csvMaker = Container::dispense('TransactionCSV');
 		$config = Admin::volatileLoad()->getConfig();
-		
+
 		$transport = Swift_SmtpTransport::newInstance('smtp.gmail.com', 465, 'ssl')
 			->setUsername($config->getEmailUsername())
 			->setPassword($config->getEmailPassword());
@@ -34,7 +34,7 @@ class CSVMailer {
 			throw new Exception('Unable to save CSV');
 		}
 		$msg->attach(Swift_Attachment::fromPath($file));
-		
+
 		file_put_contents($lastFn, $csvMaker->getLastID());
 
 		$mailer = Swift_Mailer::newInstance($transport);

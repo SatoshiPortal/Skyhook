@@ -1,4 +1,4 @@
-<?
+<?php
 $title = 'System Configuration';
 $styles = ['/assets/jQuery/jquery.mobile.min.css'];
 include __DIR__ . '/../head.phtml';
@@ -42,7 +42,7 @@ $simpleInput = function ($bound, $area) use ($html) {
 				/>
 			</div>
 		</div>
-		<?
+		<?php
 	};
 };
 ?>
@@ -85,7 +85,7 @@ $simpleInput = function ($bound, $area) use ($html) {
 					<?= $i18n->_('This data is encrypted.
 					<br />
 					Additionally, it&rsquo;s only accessed for Blockchain transactions,
-					which are secure.  When the device loses power or is shut down, 
+					which are secure.  When the device loses power or is shut down,
 					all decryption keys are lost.')?>
 				</p>
 			</div>
@@ -98,16 +98,25 @@ $simpleInput = function ($bound, $area) use ($html) {
 				autocomplete="off"
 			>
 				<input type="hidden" name="old_password" value="<?= $html->escape($password) ?>" />
-				<? include __DIR__ . '/config/admin-password.phtml'; ?>
-				<? include __DIR__ . '/config/pricing.phtml'; ?>
-				<? include __DIR__ . '/config/wallet.phtml'; ?>
-				<? include __DIR__ . '/config/transaction.phtml'; ?>
-				<? include __DIR__ . '/config/email.phtml'; ?>
-				<? include __DIR__ . '/config/contact.phtml'; ?>
-				<? include __DIR__ . '/config/send-log.phtml'; ?>
-				<? include __DIR__ . '/config/language.phtml'; ?>
-				<? include __DIR__ . '/config/commands.phtml'; ?>
-				<a 
+				<?php
+include __DIR__ . '/config/admin-password.phtml'; ?>
+				<?php
+include __DIR__ . '/config/pricing.phtml'; ?>
+				<?php
+include __DIR__ . '/config/wallet.phtml'; ?>
+				<?php
+include __DIR__ . '/config/transaction.phtml'; ?>
+				<?php
+include __DIR__ . '/config/email.phtml'; ?>
+				<?php
+include __DIR__ . '/config/contact.phtml'; ?>
+				<?php
+include __DIR__ . '/config/send-log.phtml'; ?>
+				<?php
+include __DIR__ . '/config/language.phtml'; ?>
+				<?php
+include __DIR__ . '/config/commands.phtml'; ?>
+				<a
 					href="#"
 					id="config-exit"
 					data-role="button"
@@ -130,7 +139,7 @@ $simpleInput = function ($bound, $area) use ($html) {
 <!-- /content -->
 </div>
 <!-- /page -->
-<?
+<?php
 $scripts = [
 	'/assets/gettext/Gettext.js',
 	'/assets/jQuery/jquery.min.js',

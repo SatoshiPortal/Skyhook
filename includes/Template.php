@@ -1,4 +1,4 @@
-<?
+<?php
 /**
  * Dynamic template with (hopefully) limited logic, looks to *.phtml files,
  * allows for lazy evaluation. Data may be escaped before being passed to
@@ -9,11 +9,11 @@ class Template {
 	public function __construct($page) {
 		$this->page = $page;
 	}
-	
+
 	private function getPage() {
 		return realpath(__DIR__ . '/../pages/' . $this->page . '.phtml');
 	}
-	
+
 	/**
 	 * Imports symbol table into template file's execution context, rendering
 	 * as the file dictates

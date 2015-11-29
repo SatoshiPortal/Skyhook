@@ -1,4 +1,4 @@
-<?
+<?php
 if (!isset($metas)) {
 	$metas = [];
 }
@@ -19,12 +19,16 @@ if (!isset($errorClass)) {
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 	<meta charset="UTF-8">
 	<link rel="gettext" type="application/x-po" href="<?= Localization::url('LC_MESSAGES/secondary.po') ?>">
-	<? foreach ($metas as $meta): ?>
+	<?php
+foreach ($metas as $meta): ?>
 		<?= $meta ?>
-	<? endforeach; ?>
-	<? foreach ($styles as $href): ?>
+	<?php
+endforeach; ?>
+	<?php
+foreach ($styles as $href): ?>
 		<link rel="stylesheet" href="<?= $html->escape($href); ?>" />
-	<? endforeach; ?>
+	<?php
+endforeach; ?>
 	<style>
 		.hidden {
 			display: none !important;

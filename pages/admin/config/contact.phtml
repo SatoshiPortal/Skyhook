@@ -1,4 +1,4 @@
-<?
+<?php
 $contact = $config['contact'];
 $contactInput = $simpleInput($contact, 'contact');
 ?>
@@ -34,7 +34,7 @@ $contactInput = $simpleInput($contact, 'contact');
 		spellcheck="false"
 		autocorrect="off"
 		autocapitalize="off"
-	><?
+	><?php
 	echo $html->escape($contact['information']);
 	?></textarea>
 </div><!-- /Contact Setting -->

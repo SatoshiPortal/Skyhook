@@ -1,4 +1,4 @@
-<?
+<?php
 $transactions = $config['transactions'];
 ?>
 <!-- Transaction Settings -->
@@ -25,7 +25,7 @@ $transactions = $config['transactions'];
 			spellcheck="false"
 			autocorrect="off"
 			autocapitalize="off"
-			<?
+			<?php
 			if (isset($transactions['maximum'])) {
 				echo 'value="', $transactions['maximum'], '"';
 			}

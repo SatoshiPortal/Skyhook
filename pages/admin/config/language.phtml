@@ -1,4 +1,4 @@
-<?
+<?php
 $locale = Localization::getLocale();
 ?>
 <!-- Locale Settings -->
@@ -17,16 +17,20 @@ $locale = Localization::getLocale();
 			data-theme="a"
 			data-native-menu="false"
 		>
-		<? foreach(Localization::getAvailableLocales() as $v): ?>
+		<?php
+foreach(Localization::getAvailableLocales() as $v): ?>
 			<option
 				value="<?= $html->escape($v['locale_name']) ?>"
-				<? if ($locale === $v['locale_name']): ?>
+				<?php
+if ($locale === $v['locale_name']): ?>
 				selected="selected"
-				<? endif; ?>
+				<?php
+endif; ?>
 			>
 				<?= $html->escape($v['label']) ?>
 			</option>
-		<? endforeach; ?>
+		<?php
+endforeach; ?>
 		</select>
 	</div>
 </div><!-- /Locale -->

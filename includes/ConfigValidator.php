@@ -1,4 +1,4 @@
-<?
+<?php
 
 use Environment\Post;
 
@@ -11,7 +11,7 @@ class ConfigValidator {
 			$sources = [];
 		}
 		$pricingSettings = [];
-		
+
 		if (empty($post['selector'])) {
 			$pricingSettings[] = [
 				'id' => '#sources-methods-error',
@@ -34,9 +34,9 @@ class ConfigValidator {
 				}
 			}
 		}
-		
+
 		$providers = Config::getAvailablePricingProviders();
-		
+
 		foreach ($sources as $source) {
 			if (!isset($providers[$source])) {
 				$pricingSettings[] = [
@@ -45,7 +45,7 @@ class ConfigValidator {
 				];
 			}
 		}
-		
+
 		if (array_search('PricingProviders\StaticPrice', $sources) !== false) {
 			if (!isset($post['staticPrice'])) {
 				$pricingSettings[] = [
@@ -59,9 +59,9 @@ class ConfigValidator {
 				];
 			}
 		}
-		
+
 		$modifiers = Config::getAvailablePricingModifiers();
-		
+
 		if (isset($post['modifier']) && is_array($post['modifier'])) {
 			foreach ($post['modifier'] as $modifier => $value) {
 				if (!isset($modifiers[$modifier])) {
@@ -80,27 +80,27 @@ class ConfigValidator {
 		}
 		return $pricingSettings;
 	}
-	
+
 	public function getErrors(Post $post) {
 		$i18n = Localization::getTranslator();
 		//TODO: implement range checking on modifier values, and static pricing
-		
+
 		$walletSettings = [];
-		
+
 		if (empty($post['wallet']['id'])) {
 			$walletSettings[] = [
 				'id' => '#wallet-id-error',
 				'error' => $i18n->_('A valid Blockchain.info wallet id is required.'),
 			];
 		}
-		
+
 		if (empty($post['wallet']['mainPass'])) {
 			$walletSettings[] = [
 				'id' => '#wallet-mainPass-error',
 				'error' => $i18n->_('Your respective Blockchain.info password is required.'),
 			];
 		}
-		
+
 		if (empty($post['wallet']['fromAddress'])) {
 			$walletSettings[] = [
 				'id' => '#wallet-fromAddress-error',
@@ -112,10 +112,10 @@ class ConfigValidator {
 				'error' => $i18n->_('A valid Bitcoin address is required.'),
 			];
 		}
-		
+
 		$emailUser = @$post['email']['username'];
 		$emailSettings = [];
-		
+
 		if (empty($emailUser)) {
 			$emailSettings[] = [
 				'id' => '#email-username-error',
@@ -127,32 +127,32 @@ class ConfigValidator {
 				'error' => $i18n->_('Email address entered is not valid.'),
 			];
 		}
-		
+
 		if (empty($post['email']['password'])) {
 			$emailSettings[] = [
 				'id' => '#email-password-error',
 				'error' => $i18n->_('Email password is required.'),
 			];
 		}
-		
+
 		$passwordSettings = [];
-		
+
 		if (strlen(@$post['admin_password']) < 5) {
 			$passwordSettings[] = [
 				'id' => '#password-error',
 				'error' => $i18n->_('Minimum password length is 5 characters.'),
 			];
 		}
-		
+
 		if (@$post['admin_password'] !== @$post['confirm_admin_password']) {
 			$passwordSettings[] = [
 				'id' => '#password-error',
 				'error' => $i18n->_('Admin passwords must match'),
 			];
 		}
-		
+
 		$transactionSettings = [];
-		
+
 		if (isset($post['transactions']['maximum'])) {
 			if (!preg_match('#^[0-9]+$#', $post['transactions']['maximum'])) {
 				$transactionSettings[] = [
@@ -161,9 +161,9 @@ class ConfigValidator {
 				];
 			}
 		}
-		
+
 		$localeSettings = [];
-		
+
 		if (isset($post['locale'])) {
 			if (!Localization::localePresent($post['locale'])) {
 				$transactionSettings[] = [
@@ -172,33 +172,33 @@ class ConfigValidator {
 				];
 			}
 		}
-		
+
 		$errors = [];
-		
+
 		if (!empty($transactionSettings)) {
 			$errors['#locale-settings'] = $localeSettings;
 		}
-		
+
 		if (!empty($transactionSettings)) {
 			$errors['#transaction-settings'] = $transactionSettings;
 		}
-		
+
 		if (!empty($passwordSettings)) {
 			$errors['#password-settings'] = $passwordSettings;
 		}
-		
+
 		if (!empty($pricingSettings)) {
 			$errors['#pricing-settings'] = self::getPricingErrors($post);
 		}
-		
+
 		if (!empty($walletSettings)) {
 			$errors['#wallet-settings'] = $walletSettings;
 		}
-		
+
 		if (!empty($emailSettings)) {
 			$errors['#email-settings'] = $emailSettings;
 		}
-		
+
 		return $errors;
 	}
 }

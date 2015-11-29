@@ -1,4 +1,4 @@
-<?
+<?php
 namespace Environment;
 
 use ArrayAccess;
@@ -21,19 +21,19 @@ abstract class AbstractGlobalWrapper implements ArrayAccess {
 	public function __construct(array &$b) {
 		$this->backing = &$b;
 	}
-	
+
 	public function offsetExists($offset) {
 		return array_key_exists($offset, $this->backing);
 	}
-	
+
 	public function offsetGet($offset) {
 		return $this->backing[$offset];
 	}
-	
+
 	public function offsetSet($offset, $value) {
 		$this->backing[$offset] = $value;
 	}
-	
+
 	public function offsetUnset($offset) {
 		unset($this->backing[$offset]);
 	}

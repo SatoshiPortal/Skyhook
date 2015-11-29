@@ -25,7 +25,7 @@ $providerInput = function ($name, $selected = false) use ($html) {
 	>
 		<?= $html->escape($base) ?>
 	</option>
-	<?
+	<?php
 };
 
 $modifierInput = function ($n, $c) use ($html, $config) {
@@ -69,7 +69,7 @@ $modifierInput = function ($n, $c) use ($html, $config) {
 			/>
 		</div>
 	</div>
-	<?
+	<?php
 };
 $sources = Config::getAvailablePricingProviders();
 $selectorChecked = function ($val, $configured) {
@@ -93,7 +93,8 @@ $selectorChecked = function ($val, $configured) {
 				id="pricing-sources-single"
 				name="selector"
 				autocomplete="off"
-				<? /*
+				<?php
+/*
 				<?= $selectorChecked('single', $config['selector']) ?>
 				*/ ?>
 				checked="checked"
@@ -107,7 +108,8 @@ $selectorChecked = function ($val, $configured) {
 				id="pricing-sources-highest"
 				name="selector"
 				autocomplete="off"
-				<? /*
+				<?php
+/*
 				<?= $selectorChecked('PricingProviders\Selectors\HighestPrice', $config['selector']) ?>
 				*/ ?>
 				value="PricingProviders\Selectors\HighestPrice"
@@ -120,7 +122,8 @@ $selectorChecked = function ($val, $configured) {
 				id="pricing-sources-lowest"
 				name="selector"
 				autocomplete="off"
-				<? /*
+				<?php
+/*
 				<?= $selectorChecked('PricingProviders\Selectors\LowestPrice', $config['selector']) ?>
 				*/ ?>
 				value="PricingProviders\Selectors\LowestPrice"
@@ -159,9 +162,12 @@ $selectorChecked = function ($val, $configured) {
 				<option disabled="disabled" selected="selected">
 					<?= $i18n->_('Choose Source:')?>
 				</option>
-				<? foreach($sources as $source => $real): ?>
-					<? $providerInput($source, isset($configSources[$source])); ?>
-				<? endforeach; ?>
+				<?php
+foreach($sources as $source => $real): ?>
+					<?php
+$providerInput($source, isset($configSources[$source])); ?>
+				<?php
+endforeach; ?>
 			</select>
 		</div>
 		<div id="multi-source-wrap" data-role="fieldcontain">
@@ -178,9 +184,12 @@ $selectorChecked = function ($val, $configured) {
 				<option disabled="disabled" selected="selected" data-placeholder="true">
 					<?= $i18n->_('Choose Sources:') ?>
 				</option>
-				<? foreach($sources as $source => $real): ?>
-					<? $providerInput($source, isset($configSources[$source])); ?>
-				<? endforeach; ?>
+				<?php
+foreach($sources as $source => $real): ?>
+					<?php
+$providerInput($source, isset($configSources[$source])); ?>
+				<?php
+endforeach; ?>
 			</select>
 		</div>
 		<div id="static-price-wrap" data-role="fieldcontain">
@@ -192,7 +201,7 @@ $selectorChecked = function ($val, $configured) {
 				name="staticPrice"
 				id="static-price"
 				autocomplete="off"
-				<?
+				<?php
 				if (isset($configSources['PricingProviders\StaticPrice'])) {
 					echo 'value="', $config['staticPrice'], '"';
 				}
@@ -202,9 +211,11 @@ $selectorChecked = function ($val, $configured) {
 		</div>
 	</div>
 	<hr />
-	<? $modifierInput($i18n->_('Percentage Fee'), 'Pricing\Modifiers\PercentageFee'); ?>
+	<?php
+$modifierInput($i18n->_('Percentage Fee'), 'Pricing\Modifiers\PercentageFee'); ?>
 	<hr />
-	<? $modifierInput($i18n->_('Minimum Price'), 'Pricing\Modifiers\MinimumPrice'); ?>
+	<?php
+$modifierInput($i18n->_('Minimum Price'), 'Pricing\Modifiers\MinimumPrice'); ?>
 	<hr />
 	<div class="ui-body ui-body-e hidden" id="price-result">
 	</div>

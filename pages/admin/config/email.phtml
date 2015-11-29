@@ -1,4 +1,4 @@
-<?
+<?php
 $email = $config['email'];
 $emailInput = $simpleInput($email, 'email');
 ?>
@@ -13,11 +13,14 @@ $emailInput = $simpleInput($email, 'email');
 		transaction errors that need to be resolved manually.</i>
 		')?>
 	</p>
-	<? $emailInput($i18n->_('Email Address'), 'username') ?>
-	<? $emailInput($i18n->_('Email Password'), 'password', 'password') ?>
+	<?php
+$emailInput($i18n->_('Email Address'), 'username') ?>
+	<?php
+$emailInput($i18n->_('Email Password'), 'password', 'password') ?>
 	<p>
 		<strong><?= $i18n->_('Machine Name')?></strong>:
 		<?= $i18n->_('Name your machine (a unique Machine Name is recommended)') ?>
 	</p>
-	<? $emailInput($i18n->_('Machine Name'), 'machine') ?>
+	<?php
+$emailInput($i18n->_('Machine Name'), 'machine') ?>
 </div><!-- /Email Setting -->
